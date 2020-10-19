@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">SATourismApp</string>
+    
+    <string-array name="province">
+        <item>Gauteng</item>
+        <item>WesternCape</item>
+        <item>KwazuluNatal</item>
+        <item>EasternCape</item>
+        <item>NorthernCape</item>
+        <item>Mpumalanga</item>
+        <item>Limpopo</item>
+        <item>NorthWest</item>
+        <item>FreeState</item>
+    </string-array>
+</resources>

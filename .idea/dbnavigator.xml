@@ -35,9 +35,7 @@
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="861a4d8c-7e3c-4e1e-9e8c-d584c805615b" object-ref="schemas/main/tables/satourist" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="861a4d8c-7e3c-4e1e-9e8c-d584c805615b" />

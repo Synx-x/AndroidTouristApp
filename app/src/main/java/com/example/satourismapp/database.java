@@ -12,9 +12,9 @@ import java.util.Scanner;
 public class database{
 
     //database name
-    String database="toursitattractions";
+    String database="touristDB";
     //table name
-    String table = "satourist";
+    String table = "touristattractions";
     //database version
     int version = 1;
 
@@ -22,15 +22,10 @@ public class database{
     String id="id";
     String province="Province";
     String place="Place";
-    String email="email";
-    String password="password";
-    String mobile="mobile";
-    String current="current";
-    String savings="savings";
-    public String gEmail;
-    public String gPassword;
+
+    public String gPlace;
     public String namePlate;
-    String gBalance;
+
     helper h;
     Context c;
 
@@ -38,23 +33,14 @@ public class database{
     SQLiteDatabase s;
 
     public database(MainActivity mainActivity) {
+
         c = mainActivity;
+
     }
 
+    public database(PlaceDetails placeDetails) {
 
-    public void addUser(String iid, String pprovince, String pplace) {
-        ContentValues cv = new ContentValues();
-
-        //maps data from registration activity to database
-        cv.put(id, iid);
-        cv.put(province, pprovince);
-        cv.put(place, pplace);
-
-
-        //puts data to table
-        s.insert(table, null, cv);
     }
-
 
 
     public void open() {
@@ -62,7 +48,7 @@ public class database{
         s=h.getWritableDatabase();
     }
 
-
+    //adds places to database
     public void addPlaces(){
         h = new helper(c);
         s = h.getWritableDatabase();
@@ -111,7 +97,7 @@ public class database{
         s.close();
     }
 
-    //gets user details(First Name)
+    //gets province details
     public String getProvince(){
         h = new helper(c);
         s = h.getReadableDatabase();
@@ -132,8 +118,8 @@ public class database{
         return namePlate;
     }
 
-    //gets user details(Email)
-    public String getPlace() {
+    //gets Place details
+    public String getPlaceDetails() {
         h = new helper(c);
         s = h.getReadableDatabase();
         String txt1 = "";
@@ -150,14 +136,14 @@ public class database{
 
                 Scanner fromStr = new Scanner(txt1);
 
-                gEmail = fromStr.next();
+                gPlace = fromStr.next();
 
             }
 
-            return gEmail;
+            return gPlace;
         }else{
-            gEmail ="";
-            return gEmail;
+            gPlace ="";
+            return gPlace;
         }
     }
 
@@ -173,13 +159,14 @@ public class database{
 
         @Override
         public void onCreate(SQLiteDatabase db) {
-            //creates the table for the registration page
+            //creates the table for the tourist app
             String query = "CREATE TABLE "+table+"("+id+" INTEGER PRIMARY KEY AUTOINCREMENT, "+province+" TEXT NOT NULL, "+place+" TEXT NOT NULL);";
             //executes the query
             db.execSQL(query);
         }
 
         @Override
+        //drops table if it exists
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             db.execSQL("DROP TABLE IF EXISTS "+table);
             onCreate(db);

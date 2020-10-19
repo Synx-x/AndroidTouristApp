@@ -19,15 +19,17 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    String province;
+
     String place;
     String nPlaces;
     String nProvince;
-    String[]array2;
     String madness;
 
     String[] provinces;
     String[] places;
+    String[] placees;
+
+
 
 
   private TextView uiDesc;
@@ -36,6 +38,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        PlaceDetails placeObj = new PlaceDetails();
+
+        placees =  placeObj.getPlace();
 
         Spinner spinner = findViewById(R.id.spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.province, android.R.layout.simple_spinner_item);
@@ -49,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         sql.open();
         sql.addPlaces();
          nProvince = sql.getProvince();
-         nPlaces = sql.getPlace();
+         nPlaces = sql.getPlaceDetails();
 
         List<String> convertedProvince = Arrays.asList(nProvince.split("\\s*,\\s*"));
         List<String> convertedPlace = Arrays.asList(nPlaces.split("\\s*,\\s*"));;
@@ -79,6 +85,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
 
+
+
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String selectedItem = parent.getItemAtPosition(position).toString();
@@ -102,9 +110,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
       }else if(selectedItem.equals(provinces[8])){
           uiDesc.setText(places[8]);
       }
-
-
-
 
     }
 
